@@ -12,6 +12,8 @@ export class ProductListComponent implements OnInit {
 
   constructor(private http:HttpClient) {}
   
+  prod : any;
+
   ngOnInit() {
     this.listProduct();
   }
@@ -21,6 +23,6 @@ export class ProductListComponent implements OnInit {
   }
 
   listProduct() {
-    this.getProduct().subscribe((data)=>console.log(data));
+    this.getProduct().subscribe((data) => this.prod=data);
   }
 }
