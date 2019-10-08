@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -24,5 +24,14 @@ export class ProductListComponent implements OnInit {
 
   listProduct() {
     this.getProduct().subscribe((data) => this.prod=data);
+  }
+
+  public deleteProduct(productId: number){
+    this.http.delete("http://localhost:51024/api/Product/"+productId)
+              .subscribe();
+  }
+
+  public cancel(){
+
   }
 }

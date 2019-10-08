@@ -1,4 +1,3 @@
-
 <kendo-grid
     [kendoGridBinding]="prod"
     [filterable]="true"
@@ -9,12 +8,24 @@
     [height]="510">
     <kendo-grid-column field="productId" title="Product ID" [width]="70"></kendo-grid-column>
     <kendo-grid-column field="productName" title="Product Name" [width]="120"></kendo-grid-column>
-    <kendo-grid-column field="productNumber" [width]="100"></kendo-grid-column>
-    <kendo-grid-column field="description" [width]="130"></kendo-grid-column>
-    <kendo-grid-command-column title="command" width="100">
-            <ng-template kendoGridCellTemplate>
+    <kendo-grid-column field="productNumber" title="Product Number" [width]="100"></kendo-grid-column>
+    <kendo-grid-column field="description" title="Description" [width]="130"></kendo-grid-column>
+    <kendo-grid-column field="listPrice" title="Price" [width]="100"></kendo-grid-column>
+    <kendo-grid-column title="" width="100">
+            <ng-template kendoGridCellTemplate let-dataItem>
                 <button kendoGridEditCommand [primary]="true">Edit</button>
-                <button kendoGridRemoveCommand>Delete</button>
+                <button
+                  [swal]="{ title: 'Delete Product', 
+                            text: 'this will delete permanently',
+                            cancelButtonColor:'#d33',
+                            showCancelButton:true,
+                            cancelButtonText:'Cancel',
+                            confirmButtonColor:'#000000',
+                            confirmButtonText:'Delete'}"
+                  (confirm)="deleteProduct(dataItem.productId)"
+                  (cancel)="cancel()">
+                  Delete
+                </button>
             </ng-template>
-    </kendo-grid-command-column>
+    </kendo-grid-column>
 </kendo-grid>
