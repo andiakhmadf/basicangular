@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,6 @@ export class ProductListComponent implements OnInit {
   constructor(private http:HttpClient) {}
   
   prod : any;
-
   ngOnInit() {
     this.listProduct();
   }
@@ -26,9 +26,13 @@ export class ProductListComponent implements OnInit {
     this.getProduct().subscribe((data) => this.prod=data);
   }
 
-  public deleteProduct(productId: number){
-    this.http.delete("http://localhost:51024/api/Product/"+productId)
-              .subscribe();
+  public deleteProduct(productId: number): void{
+    this.http.delete("http://localhost:51024/api/Product/"+productId,{ responseType: "text"})
+              .subscribe(response => {
+                Swal.fire(response,"The page will reload after 3 second","success")});
+    setTimeout(()=>{ 
+      location.reload();
+    }, 3000);
   }
 
   public cancel(){

@@ -7,8 +7,6 @@ import { ProductListComponent } from '../app/product/product-list/product-list.c
 import { GridModule } from '@progress/kendo-angular-grid';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
