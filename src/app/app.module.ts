@@ -6,20 +6,24 @@ import { AppComponent } from './app.component';
 import { ProductListComponent } from '../app/product/product-list/product-list.component';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppRoutingModule } from './app-routing.module';
+import { SalesOrderListComponent } from './salesOrder/sales-order-list/sales-order-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductListComponent
+    ProductListComponent,
+    SalesOrderListComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     SweetAlert2Module.forRoot(),
     GridModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AppRoutingModule
   ],
   providers: [],
-  bootstrap: [ProductListComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
