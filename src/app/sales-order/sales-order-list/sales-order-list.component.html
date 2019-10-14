@@ -1,0 +1,37 @@
+<kendo-grid
+    [kendoGridBinding]="salesOrderList"
+    [sortable]="true"
+    [pageSize]="10"
+    [pageable]="true"
+    [height]="510">
+    <ng-template kendoGridToolbarTemplate>
+      <button kendoGridAddCommand>Add new</button>
+    </ng-template>
+    <kendo-grid-column field="salesOrderId" title="ID" [width]="70"></kendo-grid-column>
+    <kendo-grid-column field="dueDate" title="Due" [width]="120">
+        <ng-template kendoGridCellTemplate let-dataItem>
+            {{dataItem.dueDate | date: 'dd/MM/yyyy'}}
+        </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="purchaseOrderNumber" title="Order Number" [width]="100"></kendo-grid-column>
+    <kendo-grid-column field="totalDue" title="Total" format="{0:c}" [width]="130"></kendo-grid-column>
+    <kendo-grid-column field="status" title="Status" [width]="100"></kendo-grid-column>
+    <kendo-grid-column title="" width="100">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <button kendoGridEditCommand [primary]="true">Edit</button>
+                <button
+                  [swal]="{ title: 'Delete Order', 
+                            text: 'this will delete permanently',
+                            type: 'warning',
+                            cancelButtonColor:'#d33',
+                            showCancelButton:true,
+                            cancelButtonText:'Cancel',
+                            confirmButtonColor:'#000000',
+                            confirmButtonText:'Delete'}"
+                  (confirm)="deleteOrder(dataItem.salesOrderId)"
+                  (cancel)="cancel()">
+                  Delete
+                </button>
+            </ng-template>
+    </kendo-grid-column>
+</kendo-grid>
